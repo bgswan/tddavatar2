@@ -6,6 +6,7 @@ class Appointment
     @patient = details[:patient]
     @owner = details[:owner]
     @treatments = []
+    @payment = 0
   end
   
   def charge_for(treatment)
@@ -13,6 +14,10 @@ class Appointment
   end
   
   def total_due
-    @treatments.inject(0) { |total, treatment| total += treatment.cost }
+    @treatments.inject(0) { |total, treatment| total += treatment.cost } - @payment
+  end
+  
+  def make_cash_payment
+    @payment = total_due
   end
 end
