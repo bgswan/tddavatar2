@@ -14,10 +14,21 @@ class Appointment
   end
   
   def total_due
-    @treatments.inject(0) { |total, treatment| total += treatment.cost } - @payment
+    total_charges - total_payments
   end
   
   def make_cash_payment
     @payment = total_due
   end
+  
+private 
+
+  def total_charges
+    @treatments.inject(0) { |total, treatment| total += treatment.cost }
+  end
+  
+  def total_payments
+    @payment
+  end
+    
 end
