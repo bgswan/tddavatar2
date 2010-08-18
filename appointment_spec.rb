@@ -10,7 +10,11 @@ describe Appointment do
     assert_equal 'fluffy', appointment.patient
   end
   
-  it "charges for treatments"
+  it "charges for treatments" do
+    appointment.charge_for(a_treatment)
+    
+    assert_equal 10.00, appointment.total_due
+  end
   
   it "settles charges with cash"
   
