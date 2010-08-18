@@ -2,6 +2,21 @@ require 'spec/test/unit'
 require 'appointment'
 require 'treatment'
 
+EXPECTED_RECEIPT = """
+Customer: Dave Atkins
+
+Services:
+  Routine check-up (fluffy): £5
+  Rabies vaccination (fluffy): £10
+  ---
+  Total: £15
+
+Paid cash £15
+
+Received with thanks.
+
+"""
+
 describe Appointment do
   
   let(:appointment) { Appointment.new(:owner => 'Dave Atkins', :patient => 'fluffy') }
@@ -26,6 +41,16 @@ describe Appointment do
     assert_equal 0, appointment.total_due
   end
   
-  it "prints a receipt"
+  it "prints a receipt" do
+    a_checkup = Treatment.new(:description => "Routine check-up", :cost => 5.00)
+    a_rabies_vaccination = Treatment.new(:description => "Rabies vaccination", :cost => 10.00)
+    
+    appointment.charge_for(a_checkup)
+    appointment.charge_for(a_rabies_vaccination)
+    
+    appointment.make_cash_payment
+    
+    assert_equal EXPECTED_RECEIPT, appointment.print_receipt
+  end
   
 end
