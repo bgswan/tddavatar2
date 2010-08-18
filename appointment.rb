@@ -21,6 +21,22 @@ class Appointment
     @payment = total_due
   end
   
+  def print_receipt
+"""
+Customer: #{@owner}
+
+Services:
+#{treatment_lines}
+  ---
+  Total: #{formatted(total_charges)}
+
+Paid cash #{formatted(total_payments)}
+
+Received with thanks.
+
+"""
+  end
+  
 private 
 
   def total_charges
@@ -31,4 +47,11 @@ private
     @payment
   end
     
+  def formatted(amount)
+    "£%d" % amount
+  end
+  
+  def treatment_lines
+    @treatments.map { |treatment| "  #{treatment.description} (#{@patient}): #{formatted(treatment.cost)}" }.join("\n")
+  end
 end
