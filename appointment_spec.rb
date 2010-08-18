@@ -18,7 +18,13 @@ describe Appointment do
     assert_equal 10.00, appointment.total_due
   end
   
-  it "settles charges with cash"
+  it "settles charges with cash" do
+    appointment.charge_for(a_treatment)
+    
+    appointment.make_cash_payment
+    
+    assert_equal 0, appointment.total_due
+  end
   
   it "prints a receipt"
   
