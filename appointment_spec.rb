@@ -1,9 +1,11 @@
 require 'spec/test/unit'
 require 'appointment'
+require 'treatment'
 
 describe Appointment do
   
   let(:appointment) { Appointment.new(:owner => 'Dave Atkins', :patient => 'fluffy') }
+  let(:a_treatment) { Treatment.new(:description => 'a treatment', :cost => 10.00) }
   
   it "is created with owner and patient" do
     assert_equal 'Dave Atkins', appointment.owner
