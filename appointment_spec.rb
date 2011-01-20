@@ -1,4 +1,4 @@
-require 'spec/test/unit'
+require 'test/unit'
 require 'appointment'
 require 'treatment'
 
@@ -18,6 +18,7 @@ Received with thanks.
 """
 
 describe Appointment do
+  include Test::Unit::Assertions
   
   let(:appointment) { Appointment.new(:owner => 'Dave Atkins', :patient => 'fluffy') }
   let(:a_treatment) { Treatment.new(:description => 'a treatment', :cost => 10.00) }
