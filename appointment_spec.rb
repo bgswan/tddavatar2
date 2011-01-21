@@ -1,17 +1,17 @@
 require 'test/unit'
-require 'appointment'
-require 'treatment'
+require './appointment'
+require './treatment'
 
 EXPECTED_RECEIPT = """
 Customer: Dave Atkins
 
 Services:
-  Routine check-up (fluffy): £5
-  Rabies vaccination (fluffy): £10
+  Routine check-up (fluffy): $5
+  Rabies vaccination (fluffy): $10
   ---
-  Total: £15
+  Total: $15
 
-Paid cash £15
+Paid cash $15
 
 Received with thanks.
 

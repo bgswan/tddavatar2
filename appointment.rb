@@ -48,7 +48,7 @@ private
   end
     
   def formatted(amount)
-    "£%d" % amount
+    "$%d" % amount
   end
   
   def treatment_lines

@@ -1,5 +1,5 @@
 require 'test/unit'
-require 'treatment'
+require './treatment'
 
 describe Treatment do
   include Test::Unit::Assertions
